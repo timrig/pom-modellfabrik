@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>POM-Modellfabrik</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-inline'; connect-src 'self' wss://9c60c4afdba242cfaa9e26fdd95e50ad.s2.eu.hivemq.cloud:8884; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net; media-src *; img-src 'self' data: content:; script-src 'self' cdn.jsdelivr.net cdnjs.cloudflare.com d3js.org 'unsafe-inline'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="paho-mqtt-min.js"></script>
+</head>
+<body>
+  <div class="navigation" id="navigation">
+    <table class="navigation">
+      <tr>
+        <td class="zwei"><button id="btnMqtt" class="button-10_nav" style="height:40px;" onclick="mqttBtn()">Parameter</button></td>
+        <td class="zwei"><button id="btnAktionen" class="button-10_nav" style="height:40px;" onclick="aktionenBtn()">Aktionen</button></td>
+      </tr>
+    </table>
+  </div>
+  <br><br>
+  <div class="seite" id="mqtt">
+    <div class="form-group" style="width: 100%">
+      <label for="mqttLinie">Linie:</label>
+      <input type="text" class="form-control" id="mqttLinie" min="1" max="3" placeholder="Gib die Nummer der Linie ein, an der du arbeitest."><br>
+      <label for="mqttStation">Station:</label>
+      <input type="text" class="form-control" id="mqttStation" min="0" max="3" placeholder="Gib die Nummer der Station ein, an der du arbeitest."><br>
+    </div>
+    <div class="btn-group-vertical" style="width: 100%">
+      <button id="btnMQTT" type="button" class="btn btn-primary" onclick="buttonSubmitMQTT()">Best&auml;tigung</button>
+    </div>
+  </div>
+  <div class="seite" id="aktion">
+    <span id="status"></span>
+    <div id="buttons" class="btn-group-vertical" style="width: 100%">
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script src="navigation.js"></script>
+  <script src="sql.js"></script>
+  <script src="onload.js"></script>
+</body>
+<script>
+  //Anfrage zum Aufwecken der Datenbank
+  fetch('/data-api/rest/Teile')
+    .then(response => {
+      console.log('Anfrage gesendet:', response);
+    })
+    .catch(error => {
+      console.error('Fehler beim Senden der Anfrage:', error);
+    });
+</script>
+</html>

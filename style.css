@@ -1,0 +1,70 @@
+html {
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  text-align:center;
+  margin: 0 auto;
+}
+label {
+  font-weight: bold;
+}
+input {
+  text-align: center;
+}
+button{
+  font-size: 12px;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+  padding: 2px;
+  font-size: 12px;
+}
+tr {
+  text-align:center;
+  padding: 2px;
+}
+td.zwei {
+  text-align:center;
+  padding: 2px;
+  width: 50%;
+}
+
+#mqtt {
+  display: block;
+}
+#aktion {
+  display: none;
+}
+
+.button-10 {
+  align-items: center;
+  padding: 6px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: solid;
+  height:125px;
+  color: #fff;
+  background-color: rgb(0, 162, 255);
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-10_nav {
+  align-items: center;
+  padding: 6px 12px;
+  background-color: rgb(0, 162, 255);
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  color: #fff;
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
