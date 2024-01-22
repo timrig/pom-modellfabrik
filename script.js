@@ -111,7 +111,7 @@ function mqttPubFertig(server,user,password,linie,variante) {
   else sekunden = zeit.getSeconds();
   let zeitGes = stunden + ":" + minuten + ":" + sekunden;
   sqlQueryFertigteile(linie,variante,datum,zeitGes);
-  topic="fertig/v" + variante;
+  topic="l" + linie + "/fertig/v" + variante;
   mqttPublish(server,user,password,topic);
 }
 
@@ -134,7 +134,7 @@ function mqttPubAusschuss(server,user,password,linie,station) {
   let zeitGes = stunden + ":" + minuten + ":" + sekunden;
   klass='defekt';
   sqlQueryDefektteile(linie,station,datum,zeitGes,klass);
-  topic="ausschuss/s" + station;
+  topic="l" + linie + "/ausschuss/s" + station;
   mqttPublish(server,user,password,topic);
 }
 
@@ -157,7 +157,7 @@ function mqttPubRep(server,user,password,linie,station) {
   let zeitGes = stunden + ":" + minuten + ":" + sekunden;
   klass='repariert';
   sqlQueryDefektteile(linie,station,datum,zeitGes,klass);
-  topic="rep";
+  topic="rep/" + linie;
   mqttPublish(server,user,password,topic);
 }
 
