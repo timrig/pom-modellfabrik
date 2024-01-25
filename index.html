@@ -17,20 +17,18 @@
       </tr>
     </table>
   </div>
-  <br><br>
+  <br>
   <div class="seite" id="mqtt">
     <div class="form-group" style="width: 100%">
-      <label for="mqttLinie">Linie:</label>
-      <input type="text" class="form-control" id="mqttLinie" min="1" max="3" placeholder="Gib die Nummer der Linie ein, an der du arbeitest."><br>
-      <label for="mqttStation">Station:</label>
-      <input type="text" class="form-control" id="mqttStation" min="0" max="3" placeholder="Gib die Nummer der Station ein, an der du arbeitest."><br>
+      <input type="text" class="form-control" style="width:100%; text-align:center;" id="mqttLinie" min="1" max="3" placeholder="Gib die Nummer der Linie ein, an der du arbeitest."><br>
+      <input type="text" class="form-control" style="width:100%; text-align:center;" id="mqttStation" min="0" max="3" placeholder="Gib die Nummer der Station ein, an der du arbeitest."><br>
     </div>
     <div class="btn-group-vertical" style="width: 100%">
-      <button id="btnMQTT" type="button" class="btn btn-primary" onclick="buttonSubmitMQTT()">Best&auml;tigung</button>
+      <button id="btnMQTT" type="button" class="button-10_mqtt" onclick="buttonSubmitMQTT()">Best&auml;tigung</button>
     </div>
   </div>
   <div class="seite" id="aktion">
-    <span id="status"></span>
+    <div id="statusDiv" class="status"><b><span id="status"></span></b></div><br>
     <div id="buttons" class="btn-group-vertical" style="width: 100%">
     </div>
   </div>

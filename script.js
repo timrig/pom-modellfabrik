@@ -3,6 +3,7 @@ var mqttUser;
 var mqttPassword;
 var mqttLinie;
 var mqttStation;
+var ivlStatus=0;
 
 function buttonSubmitMQTT() {
   mqttLinie = document.getElementById("mqttLinie").value;
@@ -196,17 +197,43 @@ function mqttPublish(server,user,pw,topic) {
 
   function onMessageArrived(message) {
     console.log('Nachricht empfangen: ' + message.payloadString);
-    var zeit=new Date();
-    var stunden;
-    var minuten;
-    var sekunden;
-    if(zeit.getHours()<10) stunden = "0" + zeit.getHours();
-    else stunden = zeit.getHours();
-    if(zeit.getMinutes()<10) minuten = "0" + zeit.getMinutes();
-    else minuten = zeit.getMinutes();
-    if(zeit.getSeconds()<10) sekunden = "0" + zeit.getSeconds();
-    else sekunden = zeit.getSeconds();
-    var zeitStr = stunden + ":" + minuten + ":" + sekunden;
-    document.getElementById("status").innerHTML = zeitStr + " Meldung erfolgreich!";
+    var nachricht=String(message.payloadString);
+    var nachrichtArray=nachricht.split("/");
+    if(nachrichtArray[1] == "fertig") statusOn(1);
+    else if(nachrichtArray[1] == "ausschuss") statusOn(2);
+    else if(nachrichtArray[0] == "rep") statusOn(3);
   }
+}
+
+//Status anzeigen und Status Highlight an
+function statusOn(v) {
+  clearInterval(ivlStatus);
+  var zeit=new Date();
+  var stunden;
+  var minuten;
+  var sekunden;
+  if(zeit.getHours()<10) stunden = "0" + zeit.getHours();
+  else stunden = zeit.getHours();
+  if(zeit.getMinutes()<10) minuten = "0" + zeit.getMinutes();
+  else minuten = zeit.getMinutes();
+  if(zeit.getSeconds()<10) sekunden = "0" + zeit.getSeconds();
+  else sekunden = zeit.getSeconds();
+  var zeitStr = stunden + ":" + minuten + ":" + sekunden;
+  if(v == 1 || v == 3) {
+    document.getElementById("status").style.color = "rgb(255,255,255)";
+    document.getElementById("statusDiv").style.backgroundColor = "rgb(0,128,0)";
+  }
+  else if(v == 2) {
+    document.getElementById("status").style.color = "rgb(255,255,255)";
+    document.getElementById("statusDiv").style.backgroundColor = "rgb(128,0,0)";
+  }
+  document.getElementById("status").innerHTML = "Letzte erfolgreiche Meldung um " + zeitStr;
+  ivlStatus=setInterval(statusOff,3*1000);
+}
+
+//Status Hightlight aus
+function statusOff() {
+  document.getElementById("status").style.color = "rgb(0,0,0)";
+  document.getElementById("statusDiv").style.backgroundColor = "rgb(255,255,255)";
+  clearInterval(ivlStatus);
 }
